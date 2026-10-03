@@ -5,18 +5,18 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Endpoint di test per verificare che il server risponda immediatamente
+// Endpoint di test
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'Middleware attivo' });
 });
 
-// Endpoint di avvio login (reindirizza all'URL ufficiale INPS)
+// Endpoint che restituisce il link diretto alla pagina SPID INPS ADI
 app.post('/api/start-proxy', (req, res) => {
   const sessionId = 'sess_' + Math.random().toString(36).substring(2, 9);
   
   res.json({
     sessionId: sessionId,
-    loginUrl: "https://www.inps.it/it/it/dettaglio-scheda.schede-paese-servizi.assegno-di-inclusione-adi.html"
+    loginUrl: "https://serviziweb2.inps.it/AS0207/PassiLogin/jsp/spid/loginSPID.jsp?uri=https%3A%2F%2Fserviziweb2.inps.it%2FAS0207%2FMisureInclusioneAttiva%2Fmain%3Fm%3Da&S=S"
   });
 });
 
